@@ -12,6 +12,8 @@ import org.bson.io.BasicOutputBuffer;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
@@ -85,5 +87,12 @@ public class Util {
             return out.toByteArray();
     }
 
+    public static String prettyPrintException(Throwable throwable) {
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        throwable.printStackTrace(pw);
+        String stackTrace = sw.toString();
+        return stackTrace;
+    }
 
 }
